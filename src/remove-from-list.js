@@ -22,9 +22,56 @@ const { NotImplementedError } = require('../extensions/index.js');
  *   }
  * }
  */
-function removeKFromList(/* l, k */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+// function removeKFromList(/* l, k */) {
+//   throw new NotImplementedError('Not implemented');
+//   // remove line with error and write your code here
+// }
+
+function removeKFromList(l, k) {
+  class LinkedList {
+    constructor() {
+      this.head = null;
+      this.length = 0;
+    }
+    removeAt(indexArr) {
+      let current = this.head;
+      for (let i = 0; i < indexArr.length; i++) {
+        if (indexArr[i] === 0) {
+          this.head = current.next;
+        } else {
+          let prev = null;
+          let index = 0;
+
+          while (index < indexArr[i]) {
+            prev = current;
+            current = current.next;
+            index++;
+          }
+          prev.next = current.next;
+        }
+        this.length--;
+      }
+
+    }
+    indexOfArrays(k) {
+      let current = this.head
+      let index = 0
+      let indexArr = []
+
+      while (current) {
+        if (current.value === k) {
+          indexArr.push(index)
+        }
+        current = current.next;
+        index++;
+      }
+      return indexArr
+    }
+  }
+  l.removeAt(this.indexOf(k))
+  return l
+
+
 }
 
 module.exports = {
