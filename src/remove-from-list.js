@@ -1,6 +1,6 @@
 const { NotImplementedError } = require('../extensions/index.js');
 
-// const { ListNode } = require('../extensions/list-node.js');
+
 
 /**
  * Given a singly linked list of integers l and an integer k,
@@ -13,66 +13,29 @@ const { NotImplementedError } = require('../extensions/index.js');
  * @example
  * For l = [3, 1, 2, 3, 4, 5] and k = 3,
  * the output should be [1, 2, 4, 5]
- *
- * Singly - linked lists are already defined using interface
- * class ListNode {
- *   constructor(x) {
- *     this.value = x;
- *     this.next = null;
- *   }
- * }
- */
-// function removeKFromList(/* l, k */) {
-//   throw new NotImplementedError('Not implemented');
-//   // remove line with error and write your code here
-// }
-
+ **/
 function removeKFromList(l, k) {
-  class LinkedList {
-    constructor() {
-      this.head = null;
-      this.length = 0;
-    }
-    removeAt(indexArr) {
-      let current = this.head;
-      for (let i = 0; i < indexArr.length; i++) {
-        if (indexArr[i] === 0) {
-          this.head = current.next;
+    while(l) {
+      let head = l;
+      let prev = null;
+      if(l.value === k){
+        if(prev === null){
+          head = l;
+          l = l.next;
+          continue;
         } else {
-          let prev = null;
-          let index = 0;
-
-          while (index < indexArr[i]) {
-            prev = current;
-            current = current.next;
-            index++;
-          }
-          prev.next = current.next;
+          prev.next = l.next;
+          l = l.next;
+          continue;
         }
-        this.length--;
       }
-
+      prev = l;
+      l = l.next;
     }
-    indexOfArrays(k) {
-      let current = this.head
-      let index = 0
-      let indexArr = []
-
-      while (current) {
-        if (current.value === k) {
-          indexArr.push(index)
-        }
-        current = current.next;
-        index++;
-      }
-      return indexArr
-    }
+    return head;
   }
-  l.removeAt(this.indexOf(k))
-  return l
 
 
-}
 
 module.exports = {
   removeKFromList
